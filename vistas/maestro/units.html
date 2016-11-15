@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="appLaescuela">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>Home</title>
+    <!-- Hojas de estilos (css) -->
+    <link href="../../css/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="../../css/custom-min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/material.min.css">
+    <!--link rel="stylesheet" href="css/ghpages-materialize.css"-->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <!-- para iconos -->
+    <link rel="stylesheet" type="text/css" href="../../font-awesome/css/font-awesome.css"/>
+    <!--  Scripts-->
+    <script src="../../js/jquery-2.1.1.min.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/material.min.js"></script>
+    <script src="../../js/plugin-min.js"></script>
+    <script src="../../js/custom-min.js"></script>
+    <script src="../../js/app/app_maestro.js"></script>
+</head>
+<body ng-controller="maestroCtrl">
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <!-- Mi barra de navegacion -->
+    <ul id="slide-out" class="side-nav fixed">
+        <li><div class="userView">
+      <!--div class="background">
+        <img src="../../images/fondo.jpeg" width="120%" height="100%">
+      </div-->
+      <a href="#!user"><img class="circle" src="../../images/fondo.jpeg" width="120%"></a>
+      <a href="#!name"><span class="name"><i class="fa fa-user"></i> {{usuario.ESCNOMM}}</span></a>
+      <a href="#!email"><span class="email"><i class="fa fa-envelope"></i> {{usuario.ESCEMAM}}</span></a>
+    </div></li>
+    <li><a href="home.html"><i class="fa fa-home"></i>   Home</a></li>
+    <!--li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li-->
+        <!--li class="bold"><a href="#!" class="waves-effect waves-teal">First Sidebar Link</a></li>
+        <li class="bold"><a href="#!" class="">Second Sidebar Link</a></li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header waves-effect waves-teal">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#!">First</a></li>
+                            <li><a href="#!">Second</a></li>
+                            <li><a href="#!">Third</a></li>
+                            <li><a href="#!">Fourth</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li-->
+    </ul>
+    <header class="demo-header mdl-layout__header mdl-color--red-500 mdl-color-text--white-600">
+        <div class="mdl-layout__header-row">
+            <a href="#" style="margin:0px 0px 0px -45px;" data-activates="slide-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon button-collapse">
+                <i class="mdi-navigation-menu"></i>
+            </a>
+            <!--span class="mdl-layout-title">Home</span-->
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                <li class="mdl-menu__item"><a href="#"><i class="fa fa-question"></i> Ayuda</a></li>
+                <li class="mdl-menu__item"><a href="#"><i class="fa fa-power-off"></i> Cerrar Session</a></li>
+            </ul>
+        </div>
+    </header>
+</div>
+<br>
+<br>
+<br>
+    <div class="collapsible" style="margin:3px">
+        <div class="collapsible-header">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="../../home.html">
+                        Home / 
+                    </a>
+                    <b class="breadcrumb"> 
+                        Materia: {{oneMateria}}, Grupo: {{oneGrupo}}
+                    </b>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s6"><a class="active" href="#unidades"><i class="fa fa-pencil"></i> Unidades</a></li>
+                <li class="tab col s6"><a href="#alumnos"><i class="fa fa-users"></i> Alumnos</a></li>
+            </ul>
+        </div>
+        <div id="unidades" class="col s12">
+            <p>Unidades de la Materia {{oneMateria}}</p>
+            <ul class="collection" style="margin:1px" ng-repeat="u in unidadesM">
+                <li class="collection-item avatar">
+                    <a href="agreements.html?unit={{u._id}}/{{idGrupo}}">
+                        <i class="fa fa-pencil-square-o circle blue"></i>
+                        <span class="title">Unidad: {{u.ESCNOMM}}</span>
+                        <!--p>
+                            Clave: {{m.ESCCODM}} <br>    
+                        </p-->
+                        <!--i class="fa fa-check-circle secondary-content"></i-->
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="alumnos" class="col s12">
+            <p>Alumnos del grupo: {{oneGrupo}}</p>
+            <ul class="collection" style="margin:3px" ng-repeat="ag in alumnosgrupo">
+                <li class="collection-item avatar" ng-repeat="a in alumnos" ng-if="a._id == ag.ESCIDEA">
+                    <a href="#">
+                        <i class="fa fa-user circle green"></i>
+                        <span class="title">Unidad: {{a.ESCNOMA}}</span>
+                        <!--p>
+                            Clave: {{m.ESCCODM}} <br>    
+                        </p-->
+                        <!--i class="fa fa-check-circle secondary-content"></i-->
+                    </a>
+                </li>
+            </ul>
+        </div>
+  </div>
+        
+
+</body>
+</html>
